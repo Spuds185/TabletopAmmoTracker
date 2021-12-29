@@ -1,0 +1,49 @@
+<html>
+    <head>
+        <!--
+            Micah Richard
+            12/28/2021
+            Sci Fi Rpg GUI.html
+        -->
+    </head>
+    <title>Ammo Counter</title>
+    <body>
+        Mag Count: <input type="number" id="MagCount"><br>
+        Ammo Count: <input type="number" id="AmmoCount"><br>
+        Shots Per Turn: <input type="number" id="ShotCount"><br>
+        <button id="shoot">Shoot</button>
+        <button id="Reload">Reload</button>
+        <hr>
+        Mags Left: <div id="MagCouculated"></div>
+        Ammo in Current Mag: <div id="AmmoCouculated"></div>
+        <script>
+            var CMAmmo;
+            var CMMag;
+            var Burstrate;
+            function shooting(){
+                 if(0 < CMMag && CMAmmo > 0){
+                    CMAmmo = CMAmmo - Burstrate;
+                    if(CMAmmo < 0){
+                        CMAmmo = 0;
+                    }
+                 }
+                 document.getElementById('AmmoCouculated').innerHTML = CMAmmo;
+            }
+            function reloading(){
+                var Mag = document.getElementById('MagCount').value;
+                var Ammo = document.getElementById('AmmoCount').value;
+                var Burst = document.getElementById('ShotCount').value;
+
+
+                Mag = Mag - 1;
+                Burstrate = Burst;
+                CMAmmo = Ammo;
+                CMMag = Mag;
+                document.getElementById('MagCouculated').innerHTML = Mag;
+                document.getElementById('AmmoCouculated').innerHTML = CMAmmo;
+            }
+            document.getElementById('shoot').addEventListener('click', shooting);
+            document.getElementById('Reload').addEventListener('click', reloading);
+        </script>
+    </body>
+</html>
